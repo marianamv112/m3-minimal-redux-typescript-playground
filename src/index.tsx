@@ -3,8 +3,13 @@ import { createStore } from 'redux';
 
 
 var body = document.getElementById('root') as HTMLBodyElement;
-body.innerHTML = "<p>Hello from Simple Redux Typescript App <p>";
-
+body.innerHTML =  `
+<p>
+    Counter: <span id="counterValue"></span> times
+    <button id="increment" >+</button>
+    <button id="decrement" >-</button>
+</p>
+`
 console.log("Script started");
 let initial = {
     counter: 0
@@ -27,16 +32,12 @@ function reducerFunction(state = initial, action: any) {
 
 var store = createStore(reducerFunction)
 
+const dynamicContent = document.getElementById("counterValue") as HTMLSpanElement;
 
+render();
 function render() {
     console.log("DOM will be updated");
-    body.innerHTML = `
-      <p>
-          Clicked: <span id="value">${store.getState().counter.toString()}</span> times
-          <button id="increment" >+</button>
-          <button id="decrement" >-</button>
-      </p>
-  `
+    dynamicContent.innerHTML = store.getState().counter.toString();
 }
 
 const incrementButton = document.getElementById('increment') as HTMLButtonElement;
@@ -47,15 +48,15 @@ incrementButton.addEventListener(
     }
 )
 
-const decrementButton = document.getElementById('increment') as HTMLButtonElement;
+const decrementButton = document.getElementById('decrement') as HTMLButtonElement;
 decrementButton.addEventListener(
     'click',
     function () {
-        const decrementAction = { type: 'INCREMENT' };
+        const decrementAction = { type: 'DECREMENT' };
         store.dispatch(decrementAction)
     }
 )
 
-render()
-store.subscribe(render)
+
+store.subscribe(render);
 
