@@ -2,4 +2,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## minimal redux typescript playground
 
-this project is to learn the principles of redux in an typscript enabled environment
+this project is to learn the principles of redux in an TypeScript enabled environment
+
+open /src/index.tsx to start learning ...
