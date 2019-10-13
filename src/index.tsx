@@ -1,7 +1,6 @@
 import './index.css';
 import { createStore } from 'redux';
 
-
 var body = document.getElementById('root') as HTMLBodyElement;
 body.innerHTML =  `
 <p>
@@ -11,11 +10,11 @@ body.innerHTML =  `
 </p>
 `
 console.log("Script started");
-let initial = {
+const initialState = {
     counter: 0
 }
 
-function reducerFunction(state = initial, action: any) {
+function reducerFunction(state = initialState, action: any) {
     let newState = JSON.parse(JSON.stringify(state));
     console.log("copy of state:" + JSON.stringify(state));
     switch (action.type) {
@@ -30,7 +29,7 @@ function reducerFunction(state = initial, action: any) {
     }
 }
 
-var store = createStore(reducerFunction)
+const store = createStore(reducerFunction)
 
 const dynamicContent = document.getElementById("counterValue") as HTMLSpanElement;
 
